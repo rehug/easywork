@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+
+    <section id="min-height">
+        <div class="container wow fadeInUp" id="project">
+            <div class="row">
+                <div class="col-md-12">
+                    <h3 class="section-title">{{ project.0.subject }}</h3>
+                    <div class="section-title-divider"></div>
+                    <p class="section-description">{{ project.0.project_user }}</p>
+                    <p class="section-description"><strong>项目名称：{{ project.0.project_name }}</strong></p>
+                </div>
+            </div>
+            <div class="row min-height-2">
+                <div class="table-responsive">
+                    {{ project.0.content | safe }}
+                </div>
+            </div>
+            <div class="row">
+                <p class="section-description">{{ project.0.edit_time }}</p>
+            </div>
+        </div>
+    </section>
+{% endblock %}

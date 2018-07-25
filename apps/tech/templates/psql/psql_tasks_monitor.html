@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+    <section id="min-height">
+        <div class="container wow fadeInUp">
+            <div class="row">
+                <div class="col-md-12">
+                    <h3 class="section-title">Postgresql Tasks Monitor</h3>
+                    <div class="section-title-divider"></div>
+                    <p class="section-description">
+                        此功能用于监测基于Postgresql的任务最新数据。</p>
+                </div>
+            </div>
+            {% if last_data %}
+                <div class="row min-height-2">
+                    <div class="table-responsive">
+                        <table class="table text-nowrap"
+                               style="min-width:1000px;">
+                            <tr>
+                                <th class="info">Date</th>
+                                <th class="info">Total</th>
+                            </tr>
+                            {% for data in last_data %}
+                                <tr>
+                                    <td>{{ data.0 }}</td>
+                                    <td>{{ data.1 }}</td>
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+                </div>
+            {% elif tables %}
+                <div class="row min-height-2">
+                    <div class="table-responsive">
+                        <table class="table text-nowrap"
+                               style="min-width:1000px;">
+                            <tr>
+                                <th class="info">TableName</th>
+                                <th class="info">API</th>
+                            </tr>
+                            {% for data in tables %}
+                                <tr>
+                                    <td>{{ data.0 }}</td>
+                                    <td>
+                                        <a href="/psql/table/?table={{ data.0 }}">/psql/table/?table={{ data.0 }}</a>
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+                </div>
+                <div class="pagination">
+                    {% if tables.has_previous %}
+                        <a href="?page={{ tables.previous_page_number }}">上一页</a>
+                    {% endif %}
+                    <span class="current">
+                        第 {{ tables.number }} 页 / 共 {{ tables.paginator.num_pages }} 页
+                    </span>
+                     {% if tables.has_next %}
+                         <a href="?page={{ tables.next_page_number }}">下一页</a>
+                     {% endif %}
+                </div>
+            {% endif %}
+            {% if error %}
+                <div class="text-center">
+                <h3 style="color: red;font-weight: 400;">Errors occurs: </h3>
+                <p class="has-error" style="color: red;"> {{ error }}</p>
+                <a href="/psql/table">返回列表</a>
+                </div>
+            {% endif %}
+        </div>
+    </section>
+{% endblock %}

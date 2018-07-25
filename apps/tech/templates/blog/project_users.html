@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+
+    <section id="min-height">
+        <div class="container wow fadeInUp">
+            <div class="row">
+                <div class="col-md-12">
+                    <h3 class="section-title">Tech Support FAQ</h3>
+                    <div class="section-title-divider"></div>
+                    <p class="section-description">
+                        Find whatever you need!
+                        <a href="http://search.gridsum.com/"> Click!</a></p>
+                </div>
+            </div>
+        <div class="row min-height-2">
+                <div class="table-responsive">
+                    <table class="table text-nowrap" style="min-width:1000px;">
+                        <tr>
+                            <th class="info">项目类型</th>
+                            <th class="info">项目名称</th>
+                            <th class="info">标题</th>
+                            <th class="info">人员</th>
+                            <th class="info">耗费天数</th>
+                            <th class="info">耗费时数</th>
+                            <th class="info">耗费刻数</th>
+                            <th class="info">正文</th>
+                            <th class="info">编辑时间</th>
+                        </tr>
+                        {% for pro_user in project_users %}
+                            <tr>
+                                <td>{{ pro_user.project_type }}</td>
+                                <td>{{ pro_user.project_name }}</td>
+                                <td>{{ pro_user.subject }}</td>
+                                <td>{{ pro_user.project_user }}</td>
+                                <td>{{ pro_user.paid_day }}</td>
+                                <td>{{ pro_user.paid_hour }}</td>
+                                <td>{{ pro_user.paid_quarter }}</td>
+                                <td>{{ pro_user.content | safe }}</td>
+                                <td>{{ pro_user.edit_time | safe }}</td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

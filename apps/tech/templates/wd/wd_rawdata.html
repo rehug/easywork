@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+
+<section id="contact1">
+    <div class="container wow fadeInUp">
+        <div class="row">
+            <div class="col-md-12">
+                <h3 class="section-title">WD Rawdata</h3>
+                <div class="section-title-divider"></div>
+                <p class="section-description">此功能用于查询WD原始日志，初步解析后发送至指定邮箱。标<span style="color:red;"> * </span>为必须字段。</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-5 col-md-push-2">
+                <div class="form">
+                    <form action="" method="post" role="form" class="contactForm">{% csrf_token %}
+                        <div class="form-group">
+                            <input type="text" name="profile_id" class="form-control" id="name" placeholder="Profile Id" data-rule="minlen:2" data-msg="Please check your profile id"
+                            />
+                            <div class="validation"></div>
+                        </div>
+                        <div class="form-group">
+                            <input type="date" class="form-control" name="start_date" id="start_date" placeholder="Start Date" data-rule="required" data-msg="Please choose start date"
+                            />
+                            <div class="validation"></div>
+                        </div>
+                        <div class="form-group">
+                            <input type="date" class="form-control" name="end_date" id="end_date" placeholder="End Date" data-rule="required" data-msg="Please choose end date"
+                            />
+                            <div class="validation"></div>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="command" id="commands" placeholder="Command" data-rule="minlen:2" data-msg="Please enter a valid command"
+                            />
+                            <div class="validation"></div>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email"
+                            />
+                            <div class="validation"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="">
+                                &nbsp;IsAPI&nbsp;&nbsp;<input type="checkbox" name="is_api" />
+                            </label>
+                            <div class="validation"></div>
+                            <span class="pull-right">&nbsp;Is Order Insert Api?</span>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit">Summit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-4 col-md-push-2">
+                <div>
+                    <p style="color: gray;"><span style="color:red;">* </span>Profile ID: 如 2160</p>
+                </div>
+
+                <div>
+                    <p style="color: gray;"><span style="color:red;">* </span>Start Date: 数据起始时间</p>
+                </div>
+                <div>
+                    <p style="color: gray;"><span style="color:red;">* </span>End Date: 数据结束时间，订单插入API需加一天</p>
+                </div>
+                <div>
+                    <p style="color: gray;"><span style="color:red;">* </span>Commands: 如 ecom, ev, spv,多个请以英文逗号分隔</p>
+                </div>
+                <div>
+                    <p style="color: gray;"><span style="color:red;">* </span>Your Email: 接收结果邮箱</p>
+                </div>
+                <div>
+                    <p style="color: gray;"><span style="color:red;">* </span>Is Order Insert Api: 是否采用订单插入API？</p>
+                </div>
+                <div>
+                    <a style="color: blue;" href="/wd/orderStatus"><span>&nbsp;&nbsp;&nbsp;</span>查询订单状态？</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

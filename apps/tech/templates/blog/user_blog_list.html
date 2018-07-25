@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+
+    <section id="min-height">
+        <div class="container wow fadeInUp">
+            <div class="row">
+                <div class="col-md-12">
+                    <h3 class="section-title">Weekly Report</h3>
+                    <div class="section-title-divider"></div>
+                    <p class="section-description">{{ username.0.name }}</p>
+                </div>
+            </div>
+            <div class="row min-height-2 text-center">
+                {% for blog in blogs %}
+                    <div class="table-responsive">
+                        <a href="/blog/users/{{ blog.user_id }}/{{ blog.id }}/">{{ blog.subject }}</a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+{% endblock %}

@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+    {% if modify_info %}
+        <section id="contact3">
+            <div class="container wow fadeInUp">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3 class="section-title">修改成功</h3>
+                        <div class="section-title-divider"></div>
+                        <p class="section-description">修改后报表信息如下, <a href="/gvp/reportKey">上一步：查询Report Key</a></p>
+
+                    </div>
+                </div>
+
+                <div class="row min-height-2">
+                    <div class="table-responsive">
+                        <table class="table text-nowrap" style="min-width:1000px;">
+                            <tr>
+                                <th class="info">ReportKey</th>
+                                <th class="info">ReportName</th>
+                                <th class="info">MailTitle</th>
+                                <th class="info">Owner</th>
+                                <th class="info">AccountName</th>
+                                <th class="info">Email</th>
+                            </tr>
+                            {% for mf_info in modify_info %}
+                                <tr>
+                                    <td>{{ mf_info.0 }}</td>
+                                    <td>{{ mf_info.1 }}</td>
+                                    <td>{{ mf_info.2 }}</td>
+                                    <td>{{ mf_info.3 }}</td>
+                                    <td>{{ mf_info.4 }}</td>
+                                    <td>{{ mf_info.5 }}</td>
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+    {% endif %}
+    {% if modify_error %}
+        <h3 class="text-center">发生错误</h3>
+        <p class="text-center" style="color: red;">{{ modify_error }}</p>
+    {% endif %}
+
+    <section id="contact1">
+        <div class="container wow fadeInUp">
+            <div class="row">
+                <div class="col-md-12">
+                    <h3 class="section-title">Report Owner</h3>
+                    <div class="section-title-divider"></div>
+                    <p class="section-description">此功能用于修改RC/GVP Report
+                        Owner，标<span style="color:red;"> * </span>为必须字段。
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-5 col-md-push-2">
+                    <div class="form">
+                        <form action="" method="post" role="form" class="contactForm" id="get_form">{% csrf_token %}
+                            <div class="form-group">
+                                <input type="number" name="report_key" class="form-control" id="report_key" placeholder="Report Key" data-rule="required" data-msg="Please check your Report Key"/>
+                                <div class="validation"></div>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" name="owner_email" class="form-control" id="owner_email" placeholder="Owner Email" data-rule="email" data-msg="Please check your email"/>
+                                <div class="validation"></div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="">
+                                    &nbsp;RC&nbsp;<input type="radio" name="rc_gvp" value="rc" checked/>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <div class="validation"></div>
+                                </label>
+                                <label for="">
+                                    GVP&nbsp;<input type="radio" name="rc_gvp" value="gvp"/>
+                                    <div class="validation"></div>
+                                </label>
+                                <div class="validation"></div>
+                                <span class="pull-right">&nbsp;RC or GVP?</span>
+                            </div>
+                            <div class="text-center">
+                                <button type="submit">Summit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-md-4 col-md-push-2">
+                    <div>
+                        <p style="color: gray;">
+                            <span style="color:red;">* </span>Report Key: 如 10368
+                        </p>
+                    </div>
+                    <div>
+                        <p style="color: gray;">
+                            <span style="color:red;">* </span>Owner Email: 修改后的Owner
+                        </p>
+                    </div>
+
+                    <div>
+                        <p style="color: gray;">
+                            <span style="color:red;">* </span>RC or GVP: 选择报表系统版本
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+{% endblock %}

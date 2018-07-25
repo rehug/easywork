@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+
+    <section id="min-height">
+        <div class="container wow fadeInUp">
+            <div class="row">
+                <div class="col-md-12">
+                    <h3 class="section-title">Tech Support FAQ</h3>
+                    <div class="section-title-divider"></div>
+                    <p class="section-description">
+                        Find whatever you need!
+                        <a href="http://search.gridsum.com/"> Click!</a></p>
+                </div>
+            </div>
+        <div class="row min-height-2">
+                <div class="table-responsive">
+                    <table class="table text-nowrap" style="min-width:1000px;">
+                        <tr>
+                            <th class="info">Author</th>
+                            <th class="info">Title</th>
+                            <th class="info">LastModifyTime</th>
+                        </tr>
+                        {% for blg in blgs %}
+                            <tr>
+                                <td>{{ blg.user }}</td>
+                                <td>
+                                    <a href="/blog/users/{{ blg.user_id }}/{{ blg.id }}/">
+                                        {{ blg.subject }}
+                                    </a>
+                                </td>
+                                <td>{{ blg.edit_time }}</td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

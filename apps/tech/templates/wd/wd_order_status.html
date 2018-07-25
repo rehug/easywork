@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+
+<section id="contact1">
+    <div class="container wow fadeInUp">
+        <div class="row">
+            <div class="col-md-12">
+                <h3 class="section-title">WD Order Status</h3>
+                <div class="section-title-divider"></div>
+                <p class="section-description">此功能用于查询WD订单状态日志，标<span style="color:red;"> * </span>为必须字段。</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-5 col-md-push-2">
+                <div class="form">
+                    <form action="" method="post" role="form" class="contactForm">{% csrf_token %}
+                        <div class="form-group">
+                            <input type="text" name="profile_id" class="form-control" id="name" placeholder="Profile Id" data-rule="minlen:3" data-msg="Please check your profile id"
+                            />
+                            <div class="validation"></div>
+                        </div>
+                        <div class="form-group">
+                            <input type="date" class="form-control" name="start_date" id="start_date" placeholder="Start Date" data-rule="required" data-msg="Please choose start date"
+                            />
+                            <div class="validation"></div>
+                        </div>
+                        <div class="form-group">
+                            <input type="date" class="form-control" name="end_date" id="end_date" placeholder="End Date" data-rule="required" data-msg="Please choose end date"
+                            />
+                            <div class="validation"></div>
+                        </div>
+                        <!--<div class="form-group">-->
+                            <!--<select class="form-control">-->
+                                <!--<option>ecom</option>-->
+                                <!--<option>ev</option>-->
+                                <!--<option>spv</option>-->
+                            <!--</select>-->
+                        <!--</div>-->
+                        <div class="form-group">
+                            <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email"
+                            />
+                            <div class="validation"></div>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit">Summit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-4 col-md-push-2">
+                <div>
+                    <p style="color: gray;"><span style="color:red;">* </span>Profile ID: 如 2160</p>
+                </div>
+
+                <div>
+                    <p style="color: gray;"><span style="color:red;">* </span>Start Date: 数据起始时间</p>
+                </div>
+                <div>
+                    <p style="color: gray;"><span style="color:red;">* </span>End Date: 数据结束时间，结束时间需加一天</p>
+                </div>
+                <div>
+                    <p style="color: gray;"><span style="color:red;">* </span>Your Email: 接收结果邮箱</p>
+                </div>
+                <div>
+                    <a style="color: blue;" href="/wd/rawdata"><span>&nbsp;&nbsp;&nbsp;</span>查询原始日志？</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

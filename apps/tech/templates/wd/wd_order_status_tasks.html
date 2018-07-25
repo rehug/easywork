@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+
+    <section id="min-height">
+        <div class="container wow fadeInUp">
+            <div class="row">
+                <div class="col-md-12">
+                    <h3 class="section-title">WD Order Status Tasks</h3>
+                    <div class="section-title-divider"></div>
+                    <p class="section-description">此功能用于查看历史任务。</p>
+                </div>
+            </div>
+
+            <div class="row min-height-2">
+                <div class="table-responsive">
+                    <table class="table text-nowrap" style="min-width:1000px;">
+                        <tr>
+                            <th class="info">Create Time</th>
+                            <th class="info">Task Id</th>
+                            <th class="info">Profile Id</th>
+                            <th class="info">Start Date</th>
+                            <th class="info">End Date</th>
+                            <th class="info">Email</th>
+                            <th class="info">Is Finished</th>
+                            <th class="info">Operating</th>
+                        </tr>
+                        {% for task in tasks %}
+                            <tr>
+                                <td>{{ task.create_time }}</td>
+                                <td>{{ task.id }}</td>
+                                <td>{{ task.profile_id }}</td>
+                                <td>{{ task.start_date }}</td>
+                                <td>{{ task.end_date }}</td>
+                                <td>{{ task.email }}</td>
+                                <td>{{ task.run_flag }}</td>
+                                <td>
+                                    {#                            <a href="/"><button class="btn btn-primary">添加</button></a>#}
+                                    <a href="/wd/delStatusTask/?id={{ task.id }}">
+                                        <button class="btn btn-primary">删除
+                                        </button>
+                                    </a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

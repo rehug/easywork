@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+
+    <section id="contact1">
+        <div class="container wow fadeInUp">
+            <div class="row">
+                <div class="col-md-12">
+                    <h3 class="section-title">Get Report Key</h3>
+                    <div class="section-title-divider"></div>
+                    <p class="section-description">此功能用于查询RC/GVP Report Key，标<span style="color:red;"> * </span>为必须字段。
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-5 col-md-push-2">
+                    <div class="form">
+                        <form action="" method="post" role="form"
+                              class="contactForm">{% csrf_token %}
+                            <div class="form-group">
+                                <input type="text" name="report_name" class="form-control" id="report_name" placeholder="Report Name" data-rule="required" data-msg="Please check your Report Name"/>
+                                <div class="validation"></div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="">
+                                    &nbsp;RC&nbsp;<input type="radio" name="rc_gvp" value="rc" checked/>&nbsp;&nbsp;&nbsp;&nbsp;
+                                </label>
+                                <label for="">
+                                    GVP&nbsp;<input type="radio" name="rc_gvp" value="gvp"/>
+                                </label>
+                                <div class="validation"></div>
+                                <span class="pull-right">&nbsp;RC or GVP?</span>
+                            </div>
+                            <div class="text-center">
+                                <button type="submit">Summit</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-md-4 col-md-push-2">
+                    <div>
+                        <p style="color: gray;">
+                            <span style="color:red;">* </span>Report: 如 for小龙的白鼠报表test
+                        </p>
+                    </div>
+
+                    <div>
+                        <p style="color: gray;">
+                            <span style="color:red;">* </span>RC or GVP: 选择报表系统版本
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    {% if report_info %}
+
+        <section id="contact3">
+            <div class="container wow fadeInUp">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3 class="section-title">Results</h3>
+                        <div class="section-title-divider"></div>
+                        <p class="section-description">您查询的报表信息如下, <a href="/gvp/modifyOwner">下一步：修改Owner</a></p>
+
+                    </div>
+                </div>
+
+                <div class="row min-height-2">
+                    <div class="table-responsive">
+                        <table class="table text-nowrap" style="min-width:1000px;">
+                            <tr>
+                                <th class="info">ReportKey</th>
+                                <th class="info">ReportName</th>
+                                <th class="info">MailTitle</th>
+                                <th class="info">Owner</th>
+                                <th class="info">AccountName</th>
+                                <th class="info">Email</th>
+                            </tr>
+                            {% for report in report_info %}
+                                <tr>
+                                    <td>{{ report.0 }}</td>
+                                    <td>{{ report.1 }}</td>
+                                    <td>{{ report.2 }}</td>
+                                    <td>{{ report.3 }}</td>
+                                    <td>{{ report.4 }}</td>
+                                    <td>{{ report.5 }}</td>
+                                </tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+    {% endif %}
+    {% if error_info %}
+        <hr class="hr_error">
+        <h3 class="text-center">报表名称不存在</h3>
+        <p class="text-center" style="color: red;">{{ error_info }}</p>
+    {% endif %}
+    </section>
+
+
+{% endblock %}

@@ -1,0 +1,249 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Easywork - Home</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Facebook Opengraph integration: https://developers.facebook.com/docs/sharing/opengraph -->
+    <meta property="og:title" content="">
+    <meta property="og:image" content="">
+    <meta property="og:url" content="">
+    <meta property="og:site_name" content="">
+    <meta property="og:description" content="">
+
+    <!-- Twitter Cards integration: https://dev.twitter.com/cards/  -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="">
+    <meta name="twitter:title" content="">
+    <meta name="twitter:description" content="">
+    <meta name="twitter:image" content="">
+
+    <!-- Place your favicon.ico and apple-touch-icon.png in the template root directory -->
+    <link href="{% static 'img/favicon.ico' %}" rel="shortcut icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800"
+          rel="stylesheet">
+
+    <!-- Bootstrap CSS File -->
+    <link href="{% static 'libs/bootstrap/css/bootstrap.min.css' %}"
+          rel="stylesheet">
+
+    <!-- Libraries CSS Files -->
+    <link href="{% static 'libs/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
+    <link href="{% static 'libs/animate-css/animate.min.css' %}"
+          rel="stylesheet">
+
+    <!-- Main Stylesheet File -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+</head>
+
+<body>
+<div id="preloader"></div>
+
+<!--==========================
+Hero Section
+============================-->
+{% if slug == 'index' %}
+    <section id="hero">
+        <div class="hero-container">
+            <div class="wow fadeIn">
+                <div class="hero-logo">
+                    <img class="" src="{% static 'img/logo2.png' %}"
+                         alt="Imperial">
+                </div>
+
+                <h1>Welcome to Easywork</h1>
+                <h2>Aimed to make work
+                    <span class="rotating">faster, easier, smarter</span>
+                </h2>
+                <div class="actions">
+                    <a href="/#about" class="btn-get-started">Get Strated</a>
+                    <a href="/#services" class="btn-services">Our Services</a>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endif %}
+
+<!--==========================
+Header Section
+============================-->
+<header id="header">
+    <div class="container">
+
+        <div id="logo" class="pull-left">
+            <a href="/#hero">
+                <img src="{% static 'img/logo2.png' %}" alt="" title=""/>
+            </a>
+            <!-- Uncomment below if you prefer to use a text image -->
+            <!--<h1><a href="#hero">Header 1</a></h1>-->
+        </div>
+
+        <nav id="nav-menu-container">
+            <ul class="nav-menu">
+                <li {% if slug == 'index' %}class="menu-active"{% endif %}>
+                    <a href="/#about">Home</a>
+                </li>
+                {#          <li>#}
+                {#            <a href="#about">About Us</a>#}
+                {#          </li>#}
+                {#          <li>#}
+                {#            <a href="#services">Services</a>#}
+                {#          </li>#}
+                {#          <li>#}
+                {#            <a href="#portfolio">Portfolio</a>#}
+                {#          </li>#}
+                {#          <li>#}
+                {#            <a href="#testimonials">Testimonials</a>#}
+                {#          </li>#}
+                {#          <li>#}
+                {#            <a href="#team">Team</a>#}
+                {#          </li>#}
+                <li class="menu-has-children {% if slug == 'wd_rawdata' or slug == 'wd_tasks' or slug == 'wd_order_status' or slug == 'wd_order_status_tasks' %}menu-active{% endif %}">
+                    <a href="/#services">WebDissector3</a>
+                    <ul>
+                        {#              <li>#}
+                        {#                <a href="/rawdata">Raw Data</a>#}
+                        {#              </li>#}
+                        <li class="menu-has-children">
+                            <a href="/wd/rawdata">Raw Data</a>
+                            <ul>
+                                <li>
+                                    <a href="/wd/rawdata">Submit</a>
+                                </li>
+                                <li>
+                                    <a href="/wd/tasks">Tasks</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="menu-has-children">
+                            <a href="/wd/orderStatus">Order Status</a>
+                            <ul>
+                                <li>
+                                    <a href="/wd/orderStatus">Submit</a>
+                                </li>
+                                <li>
+                                    <a href="/wd/showStatusTasks">Tasks</a>
+                                </li>
+                            </ul>
+                        </li>
+                        {#              <li>#}
+                        {#                <a href="#">Drop Down</a>#}
+                        {#              </li>#}
+                    </ul>
+                </li>
+                <li class="menu-has-children {% if slug == 'gvp_report_key' or slug == 'gvp_owner' %}menu-active{% endif %}">
+                    <a href="">RC/GVP</a>
+                    <ul>
+                        <li>
+                            <a href="/gvp/reportKey">查询报表Key</a>
+                        </li>
+{#                        <li class="menu-has-children">#}
+{#                            <a href="#">Drop Down 2</a>#}
+{#                            <ul>#}
+{#                                <li>#}
+{#                                    <a href="#">Deep Drop Down 1</a>#}
+{#                                </li>#}
+{#                                <li>#}
+{#                                    <a href="#">Deep Drop Down 2</a>#}
+{#                                </li>#}
+{#                            </ul>#}
+{#                        </li>#}
+                        <li>
+                            <a href="/gvp/modifyOwner">修改报表Owner</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="menu-has-children {% if slug == 'gvp_tasks_monitor' %}menu-active{% endif %}">
+                    <a href="">Postgresql</a>
+                    <ul>
+                        <li>
+                            <a href="/psql/table">Postgresql Monitor</a>
+                        </li>
+                    </ul>
+                </li>
+            <!-- 暂不显示 -->
+{#                <li class="{% if slug == 'weekly' %}menu-active{% endif %}">#}
+{#                    <a href="/blog/users">WeeklyReport</a>#}
+{#                </li>#}
+{#                <li class="{% if slug == 'faq' %}menu-active{% endif %}">#}
+{#                    <a href="/blog/lists">FAQ</a>#}
+{#                </li>#}
+{#                <li class="{% if slug == 'weekly' %}menu-active{% endif %}">#}
+{#                    <a href="/blog/users">WeeklyReport</a>#}
+{#                </li>#}
+                <li class="{% if slug == 'project' %}menu-active{% endif %}">
+                    <a href="/project">ProjectManager</a>
+                </li>
+
+                <li>
+                    <a href="/#contact">Contact Us</a>
+                </li>
+
+                <li class="{% if slug == 'login' %}menu-active{% endif %}">
+                    {% if user.is_authenticated %}
+                        <a href="/logout">Log Out</a>
+                    {% else %}
+                        <a href="/login?next={{ request.path }}">Log In</a>
+                    {% endif %}
+                </li>
+
+            </ul>
+        </nav>
+        <!-- #nav-menu-container -->
+    </div>
+</header>
+<!-- #header -->
+
+<!--==========================
+About Section
+============================-->
+{% block content %}{% endblock %}
+
+<!--==========================
+Footer
+============================-->
+<footer id="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="copyright">
+                    &copy; Copyright
+                    <strong>Easywork</strong>. All Rights Reserved
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- #footer -->
+
+<a href="#" class="back-to-top">
+    <i class="fa fa-chevron-up"></i>
+</a>
+
+<!-- Required JavaScript Libraries -->
+<script src="{% static 'libs/jquery/jquery.min.js' %}"></script>
+<script src="{% static 'libs/bootstrap/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'libs/superfish/hoverIntent.js' %}"></script>
+<script src="{% static 'libs/superfish/superfish.min.js' %}"></script>
+<script src="{% static 'libs/morphext/morphext.min.js' %}"></script>
+<script src="{% static 'libs/wow/wow.min.js' %}"></script>
+<script src="{% static 'libs/stickyjs/sticky.js' %}"></script>
+<script src="{% static 'libs/easing/easing.js' %}"></script>
+
+<!-- Template Specisifc Custom Javascript File -->
+<script src="{% static 'js/custom.js' %}"></script>
+
+  <script src="{% static 'contactform/contactform.js' %}"></script>
+
+
+</body>
+
+</html>
